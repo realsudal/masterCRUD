@@ -1,0 +1,104 @@
+https://blog.naver.com/xkqjsslsek80
+정리 잘되어 있음 읽어볼것
+
+1. pom.xml 에 jsp 설정하기
+	-jsp 사용을 위한 메이븐 설정
+	
+2. application.properties 파일 설정하기
+	-드랍박스 application db 설정 긁어서 나에게 맞게 설정
+
+3. vo 만들기
+	
+4. mybatis 설정파일 만들기
+	-db 패키지에서	DBManager.java 
+			Mapper.xml
+			sqlMapConfig.xml
+			db.properties(걍 파일) 만들기
+
+5.dao 만들기
+-DBManager에서 만든 메소드 호출만 하면 됨
+-호출을 위해 클래스 위에 @Repository 선언
+-public 자료형 메소드이름(){}
+-return DBManager.메소드 이름 임
+
+6. controller 만들기
+-클래스 위에 @controller 선언
+-dao 선언하고 dao setter 만들기
+-dao를 통해 상태유지할 메소드 만들기
+	public void ~~(Model model)
+-메소드 선언 위에 @RequestMapping("/칠 이름.do")
+-상태유지를 위해 model.addattribute("매개변수",dao.메소드이름
+
+7.src안에-어쩌구----폴더 안에 views 안에 jsp 파일만들기
+컨트롤러에서 @RequestMapping("/칠 이름.do") 이렇게 썼던
+칠 이름으로 jsp 만들어야함 동일해야함!
+
+db.properties
+-application.properties 이거 그대로 긁어오기
+-앞뒤에 복잡한거 다 지우고 driver / url / username / password 만 남기기
+-내 설정에 맞게 쓰고 끝
+
+
+Mapper.xml
+-mybatis 홈페이지 mapper 로 끝나는 코드 긁어오기
+-namespace 간단설정
+-select id 는 메소드 이름
+-resulttype은 타입 알리아스 애칭
+-셀렉문 중간에 디비 꺼내올 sql 쿼리 문 적기
+	
+		
+sqlMapConfig.xml
+-mubatis 홈페이지 configuration 으로 끝나는 코드 긁어오기
+-porperties resourse=""db.properties 경로주기 (파일경로니까 / )
+-중간에 <typeAlias><typeAlias type="클래스" aliase="애칭"></typeAlias> 애칭주기
+(타입 안에는 클래스 표시니까  .  으로 표시)
+-mapper resourse=""mapper 경로주기(파일경로니까 /)
+
+
+DBManager.java 
+-먼저 static으로 감싸기
+-mybatis 홈페이지 stream 있는 코드 긁어오기(예외처리해줌)
+-public static으로 감싸고 SqlSessionFactory 를 null로 선언
+-예외처리 안에서 애들 임포트 해주기(resourse 값은 sqlMapConfig.xml 파일경로)
+-그 밑에는 static 으로 하고 필요한 메소드 만들기
+ ex) SqlSession 필요함/db매니저 안에 있는 sqlsessionfactory 오픈시킴
+	session닫아주기
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
